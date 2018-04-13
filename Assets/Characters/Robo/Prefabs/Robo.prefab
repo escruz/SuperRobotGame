@@ -872,7 +872,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!95 &95727210984497982
 Animator:
   serializedVersion: 3
@@ -901,9 +901,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c698a7575eed3204b89e04dac9085a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedSmoothing: 10
   speed: 6
-  jumpSpeed: 4
+  speedSmoothing: 10
+  turnSpeed: 10
+  jumpSpeed: 6
+  groundCheckDistance: 0.5
   groundChecks:
   - {fileID: 4232310984154726}
   - {fileID: 4984432261002496}
