@@ -18,10 +18,14 @@ namespace Robo {
         public Transform[] groundChecks;
         public float groundCheckDistance = 0.5f;
 
+        // state flags
+        bool isFacingRight = true;
+
         float deadZone = 0.01f;
 
         Rigidbody m_RigidBody;
         Animator m_Animator;
+
         Vector3 m_MoveDirection;
         Quaternion m_RotationDirection;
 
@@ -71,21 +75,36 @@ namespace Robo {
             m_MoveDirection = m_MoveDirection * speed * Time.deltaTime;
             m_RigidBody.MovePosition(transform.position + m_MoveDirection);
 
-            // rotate the player to the movement direction
-            if (m_MoveDirection != Vector3.zero) {
-                m_RotationDirection = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(m_MoveDirection), turnSpeed * Time.deltaTime);
-                m_RigidBody.MoveRotation(m_RotationDirection);
+            // only toggle flag when there is input
+            if (horizontal > 0) {
+                isFacingRight = true;
+            } else if (horizontal < 0) {
+                isFacingRight = false;
             }
+
+            Vector3 facingDirection;
+            if (isFacingRight) {
+                facingDirection = new Vector3(0, 90, 0);
+            } else {
+                facingDirection = new Vector3(0, 270, 0);
+            }
+            
+            m_RotationDirection = Quaternion.Lerp(transform.rotation, Quaternion.Euler(facingDirection), turnSpeed * Time.deltaTime);
+            m_RigidBody.MoveRotation(m_RotationDirection);
+
         }
 
         private void Jump() {
+
             if (jumpPending && IsGrounded()) {
                 m_RigidBody.velocity = new Vector3(m_RigidBody.velocity.x, 0, m_RigidBody.velocity.z);
                 m_RigidBody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
             }
+            
             jumpPending = false;
         }
         
+        // IsGrounded - used for jumping
         private bool IsGrounded() {
             // check to see if one of the Ground Check points hit the ground
             foreach (var groundCheck in groundChecks) {
@@ -105,14 +124,14 @@ namespace Robo {
             }
             attackPending = false;
         }
-
+        
         private void Animate() {
+
             // IsGrounded() is expensive because of Raycast. 
             // Will have to just check velocity to handle animation
-            var onGround = (Mathf.Abs(m_RigidBody.velocity.y) <= deadZone);
-
-            m_Animator.SetBool("IsGrounded", onGround);
-            if (onGround) {
+            bool grounded = (Mathf.Abs(m_RigidBody.velocity.y) <= deadZone);
+            m_Animator.SetBool("IsGrounded", grounded);
+            if (grounded) {
                 m_Animator.SetBool("IsMoving", horizontal != 0);
             } else {
                 m_Animator.SetBool("IsMoving", false);
@@ -120,6 +139,7 @@ namespace Robo {
 
             m_Animator.SetBool("IsJumping", m_RigidBody.velocity.y > deadZone);
             m_Animator.SetBool("IsFalling", m_RigidBody.velocity.y < deadZone);
+
         }
 
     }
