@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 4664897181072666}
   - component: {fileID: 65471013472336274}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PunchHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -930,7 +930,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!65 &65471013472336274
 BoxCollider:
@@ -942,8 +942,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0.7}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!95 &95727210984497982
 Animator:
   serializedVersion: 3
@@ -975,12 +975,16 @@ MonoBehaviour:
   speed: 9
   speedSmoothing: 10
   turnSpeed: 20
-  jumpSpeed: 14
+  jumpSpeed: 16
+  doubleJumpSpeed: 12
   groundChecks:
   - {fileID: 4232310984154726}
   - {fileID: 4984432261002496}
   - {fileID: 4564194808090802}
   groundCheckDistance: 0.5
+  attackDuration: 0.5
+  attackForce: 1
+  canDoubleJump: 0
 --- !u!136 &136223278431579808
 CapsuleCollider:
   m_ObjectHideFlags: 1
