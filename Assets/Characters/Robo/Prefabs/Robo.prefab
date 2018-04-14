@@ -158,10 +158,11 @@ GameObject:
   - component: {fileID: 95727210984497982}
   - component: {fileID: 54297231844285604}
   - component: {fileID: 136223278431579808}
+  - component: {fileID: 114412476927059028}
   - component: {fileID: 114667584499176486}
   m_Layer: 0
   m_Name: Robo
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4664897181072666}
   - component: {fileID: 65471013472336274}
+  - component: {fileID: 114087688022934974}
   m_Layer: 0
   m_Name: PunchHitbox
   m_TagString: Untagged
@@ -961,6 +963,33 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114087688022934974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1851902912533936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2148561e6e361e41a96942761ebf714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 1
+--- !u!114 &114412476927059028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322423185142404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22b394d40938474f97c3eff33062740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 5
+  hp: 5
+  damage: 1
+  deathEffect: {fileID: 0}
 --- !u!114 &114667584499176486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,6 +1014,7 @@ MonoBehaviour:
   attackDuration: 0.5
   attackForce: 1
   canDoubleJump: 0
+  punchHitbox: {fileID: 114087688022934974}
 --- !u!136 &136223278431579808
 CapsuleCollider:
   m_ObjectHideFlags: 1
