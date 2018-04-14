@@ -7,7 +7,7 @@ namespace Robo {
     public class EnemyChase : MonoBehaviour {
 
         [Header("Move Speed")]
-        public float speed = 6f;
+        public float speed = 3f;
         public float speedSmoothing = 10f;
         public float turnSpeed = 10f;
 
@@ -15,6 +15,7 @@ namespace Robo {
 
         float deadZone = 0.01f;
 
+        CharacterStats m_CharacterStats;
         Rigidbody m_Rigidbody;
         Animator m_Animator;
         Vector3 m_MoveDirection;
@@ -26,11 +27,19 @@ namespace Robo {
         private void Awake() {
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Animator = GetComponent<Animator>();
+            m_CharacterStats = GetComponent<CharacterStats>();
         }
 
         private void FixedUpdate() {
             ChasePlayer();
             AnimateMovement();
+        }
+
+        private void OnCollisionStay(Collision collision) {
+            if (collision.gameObject.tag == "Player") {
+                var playerStats = collision.gameObject.GetComponent<CharacterStats>();
+                playerStats.DealDamage(m_CharacterStats.damage);
+            }
         }
 
         // TODO this code is mostly a copy of PlayerController Move()

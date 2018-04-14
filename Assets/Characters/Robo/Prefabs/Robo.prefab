@@ -990,7 +990,9 @@ MonoBehaviour:
   maxHp: 5
   hp: 5
   damage: 1
-  deathEffect: {fileID: 0}
+  invulDuration: 1
+  deathEffect: {fileID: 1623566544573304, guid: 65234e143240fb34ea96bd3224fb9ee3,
+    type: 2}
 --- !u!114 &114667584499176486
 MonoBehaviour:
   m_ObjectHideFlags: 1
