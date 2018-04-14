@@ -29,7 +29,7 @@ namespace Robo {
         
         float deadZone = 0.01f;
 
-        Rigidbody m_RigidBody;
+        Rigidbody m_Rigidbody;
         Animator m_Animator;
         CharacterStats m_CharacterStats;
 
@@ -49,7 +49,7 @@ namespace Robo {
         //--------------------------------------------
 
         private void Awake() {
-            m_RigidBody = GetComponent<Rigidbody>();
+            m_Rigidbody = GetComponent<Rigidbody>();
             m_Animator = GetComponent<Animator>();
             m_CharacterStats = GetComponent<CharacterStats>();
         }
@@ -99,7 +99,7 @@ namespace Robo {
             // move the player
             m_MoveDirection = new Vector3(m_Horizontal, 0, 0);
             m_MoveDirection = m_MoveDirection * speed * Time.deltaTime;
-            m_RigidBody.MovePosition(transform.position + m_MoveDirection);
+            m_Rigidbody.MovePosition(transform.position + m_MoveDirection);
 
             // only toggle flag when there is input
             if (m_Horizontal > 0) {
@@ -116,7 +116,7 @@ namespace Robo {
             }
             
             m_RotationDirection = Quaternion.Lerp(transform.rotation, Quaternion.Euler(facingDirection), turnSpeed * Time.deltaTime);
-            m_RigidBody.MoveRotation(m_RotationDirection);
+            m_Rigidbody.MoveRotation(m_RotationDirection);
 
         }
 
@@ -145,9 +145,9 @@ namespace Robo {
         }
 
         private void DoJump(float jSpeed) {
-            m_RigidBody.velocity = new Vector3(m_RigidBody.velocity.x, 0, m_RigidBody.velocity.z);
-            m_RigidBody.angularVelocity = Vector3.zero;
-            m_RigidBody.AddForce(new Vector3(0, jSpeed, 0), ForceMode.Impulse);
+            m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
+            m_Rigidbody.angularVelocity = Vector3.zero;
+            m_Rigidbody.AddForce(new Vector3(0, jSpeed, 0), ForceMode.Impulse);
         }
         
         // IsGrounded - used for jumping
@@ -167,7 +167,7 @@ namespace Robo {
 
             // IsGrounded() is expensive because of Raycast. 
             // Will have to just check velocity to handle animation
-            bool grounded = (Mathf.Abs(m_RigidBody.velocity.y) <= deadZone);
+            bool grounded = (Mathf.Abs(m_Rigidbody.velocity.y) <= deadZone);
             m_Animator.SetBool("IsGrounded", grounded);
             if (grounded) {
                 m_Animator.SetBool("IsMoving", m_Horizontal != 0);
@@ -175,8 +175,8 @@ namespace Robo {
                 m_Animator.SetBool("IsMoving", false);
             }
 
-            m_Animator.SetBool("IsJumping", m_RigidBody.velocity.y > deadZone);
-            m_Animator.SetBool("IsFalling", m_RigidBody.velocity.y < deadZone);
+            m_Animator.SetBool("IsJumping", m_Rigidbody.velocity.y > deadZone);
+            m_Animator.SetBool("IsFalling", m_Rigidbody.velocity.y < deadZone);
 
         }
 
@@ -188,9 +188,9 @@ namespace Robo {
             if (m_TimerAttack > 0) {
                 m_TimerAttack -= Time.deltaTime;
                 if (m_TimerAttack <= 0) {
-                    m_RigidBody.velocity = Vector3.zero;
-                    m_RigidBody.angularVelocity = Vector3.zero;
-                    m_RigidBody.useGravity = true;
+                    m_Rigidbody.velocity = Vector3.zero;
+                    m_Rigidbody.angularVelocity = Vector3.zero;
+                    m_Rigidbody.useGravity = true;
                 }
             } else {
                 m_TimerAttack = 0;
@@ -207,11 +207,11 @@ namespace Robo {
 
         private void DoAttack() {
             m_TimerAttack = attackDuration;
-            m_RigidBody.velocity = Vector3.zero;
-            m_RigidBody.angularVelocity = Vector3.zero;
-            m_RigidBody.AddForce(transform.forward * attackForce, ForceMode.Impulse);
+            m_Rigidbody.velocity = Vector3.zero;
+            m_Rigidbody.angularVelocity = Vector3.zero;
+            m_Rigidbody.AddForce(transform.forward * attackForce, ForceMode.Impulse);
             m_Animator.SetTrigger("Attack");
-            m_RigidBody.useGravity = false;
+            m_Rigidbody.useGravity = false;
         }
 
         // called by Animation Event

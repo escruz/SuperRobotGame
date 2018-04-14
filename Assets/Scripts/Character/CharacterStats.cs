@@ -28,7 +28,7 @@ namespace Robo {
 
         private void Death() {
             // TODO object pooler instead of instantiate
-            Instantiate(deathEffect);
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
         }
         
