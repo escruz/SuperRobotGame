@@ -39,6 +39,7 @@ namespace Robo {
 
         }
 
+        // show a message to the screen
         public void Show( string message, float duration ) {
             m_TimerShow = duration;
             notificationText.text = message;

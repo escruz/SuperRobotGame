@@ -33,6 +33,7 @@ namespace Robo {
         }
 
         private void RefreshHearts() {
+            // enable/disable the correct hearts based on hp
             for (int i = 0; i<m_Stats.maxHp; i++) {
                 if (m_Stats.hp > i) {
                     m_FilledHearts[i].SetActive(true);

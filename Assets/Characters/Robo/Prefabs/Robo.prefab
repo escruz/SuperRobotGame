@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 95727210984497982}
   - component: {fileID: 54297231844285604}
   - component: {fileID: 136223278431579808}
+  - component: {fileID: 114814013133378360}
   - component: {fileID: 114412476927059028}
   - component: {fileID: 114667584499176486}
   m_Layer: 0
@@ -1018,6 +1019,17 @@ MonoBehaviour:
   attackForce: 1
   canDoubleJump: 1
   punchHitbox: {fileID: 114087688022934974}
+--- !u!114 &114814013133378360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322423185142404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1355a56ea2b721746914adc98dc69b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136223278431579808
 CapsuleCollider:
   m_ObjectHideFlags: 1
