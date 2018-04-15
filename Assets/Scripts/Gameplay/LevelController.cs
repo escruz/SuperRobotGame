@@ -30,6 +30,7 @@ namespace Robo {
         private LevelControllerStates state;
 
         GameObject[] m_Enemies;
+        GameObject[] m_Collectables;
 
         private void Start() {
             // show notification
@@ -39,6 +40,9 @@ namespace Robo {
             // grab required data for quest
             if (killAllEnemies) {
                 m_Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            }
+            if (collectAllCoins) {
+                m_Collectables = GameObject.FindGameObjectsWithTag("Collectable");
             }
             // initialize state
             state = LevelControllerStates.QuestCheck;
@@ -57,6 +61,7 @@ namespace Robo {
             
         }
 
+        // TODO move this to listeners instead of running on update
         private void QuestCheckUpdate() {
 
             // check player death for Defeat condition
@@ -78,6 +83,11 @@ namespace Robo {
                     success = false;
                 }
             }
+            if (collectAllCoins) {
+                if (!CollectedAllCoins()) {
+                    success = false;
+                }
+            }
             // TODO other quests
 
             if (success) {
@@ -96,6 +106,16 @@ namespace Robo {
             // check if all enemies are deactivated
             for (int i = 0; i<m_Enemies.Length; i++) {
                 if (m_Enemies[i].activeSelf) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool CollectedAllCoins() {
+            // check if all coins are deactivated
+            for (int i = 0; i < m_Collectables.Length; i++) {
+                if (m_Collectables[i].activeSelf) {
                     return false;
                 }
             }

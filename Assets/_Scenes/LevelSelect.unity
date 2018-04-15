@@ -461,6 +461,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1963723528582268, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_Name
+      value: TeleporterLevel1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
   m_IsPrefabParent: 0
@@ -2822,6 +2826,57 @@ Transform:
   m_PrefabParentObject: {fileID: 4983146905363074, guid: 4ef987057a6bc464bb151fe75d647072,
     type: 2}
   m_PrefabInternal: {fileID: 2108468011}
+--- !u!1001 &2141083782
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.0000018099951
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886951645780910, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963723528582268, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+      propertyPath: m_Name
+      value: TeleporterLevel2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114592650996233642, guid: bdc4dc286d267f74394ab947cc2f8be9,
+        type: 2}
+      propertyPath: sceneName
+      value: Level2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: bdc4dc286d267f74394ab947cc2f8be9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &2143661127
 Prefab:
   m_ObjectHideFlags: 0

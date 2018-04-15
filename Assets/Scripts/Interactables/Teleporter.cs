@@ -21,13 +21,8 @@ namespace Robo {
         }
 
         public void Update() {
-            
-            if (string.IsNullOrEmpty(sceneName)) return;
 
-            // input dpad up
-            if (Input.GetAxisRaw("Vertical") == 1) {
-                GameController.instance.Load(sceneName);
-            }
+            HandleInput();
 
         }
 
@@ -42,6 +37,15 @@ namespace Robo {
             // player out of range
             if (other.tag == "Player") {
                 isPlayerInTrigger = false;
+            }
+        }
+
+        private void HandleInput() {
+            if (string.IsNullOrEmpty(sceneName)) return;
+            if (!isPlayerInTrigger) return;
+            // input dpad up
+            if (Input.GetAxisRaw("Vertical") == 1) {
+                GameController.instance.Load(sceneName);
             }
         }
 
