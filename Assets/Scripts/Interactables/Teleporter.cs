@@ -8,6 +8,7 @@ namespace Robo {
     // interactable that changes scene
     public class Teleporter : MonoBehaviour {
 
+        public string displayName;
         public string sceneName;
         public Text levelText;
         public Text completedText;
@@ -59,7 +60,7 @@ namespace Robo {
         private void SetTextValues() {
 
             // level name to transition to
-            levelText.text = sceneName;
+            levelText.text = displayName;
 
             // completed text if player finished the level
             completedText.gameObject.SetActive(false);
