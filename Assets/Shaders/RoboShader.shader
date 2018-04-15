@@ -4,7 +4,6 @@
 Shader "Robo/RoboShader" {
 
 	Properties {
-
 		[NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
 		_Color ("Color", Color) = (1,1,1,1)
 		_OutlineColor ("Outline Color", Color) = (0,0,0,1)
@@ -29,8 +28,9 @@ Shader "Robo/RoboShader" {
 		ENDCG
 
 		// outline surface shader with custom vertex function
-
+		Lighting Off
 		Cull Front // turn inside out so it will be rendered behind diffuse
+		ZTest Less
 
 		CGPROGRAM
 		#pragma surface surf Lambert vertex:vert
@@ -41,6 +41,7 @@ Shader "Robo/RoboShader" {
 		float4 _OutlineColor;
 		void vert (inout appdata_full v) {
 			v.vertex.xyz *= (1+_OutlineThickness); // scale
+			//v.vertex.xyz += v.normal * _OutlineThickness; // offset
 		}
 		sampler2D _MainTex;
 		void surf (Input IN, inout SurfaceOutput o) {
