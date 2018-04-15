@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace Robo {
 
     // stores the stats for the character
-    public class CharacterStats : MonoBehaviour {
+    public class CharacterStats : MonoBehaviour, IDataResettable {
 
         public int maxHp = 1;
         public int hp = 1;
@@ -22,6 +22,11 @@ namespace Robo {
 
         private void Update() {
             RunInvulnerableTimer();
+        }
+
+        // IDataResettable
+        public void DataReset() {
+            FullHeal();
         }
 
         //--------------------------------------------
