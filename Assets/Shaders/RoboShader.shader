@@ -9,103 +9,46 @@ Shader "Robo/RoboShader" {
 		_Color ("Color", Color) = (1,1,1,1)
 		_OutlineColor ("Outline Color", Color) = (0,0,0,1)
 		_OutlineThickness ("Outline Thickness", Range(0,0.1)) = 0.02
-
 	}
 
 	SubShader {
 
-		// outline pass
-		Pass {
+		// diffuse surface shader
+		Tags { "RenderType" = "Opaque" }
+		CGPROGRAM
+		#pragma surface surf Lambert
+		struct Input {
+			float2 uv_MainTex;
+		};
+		sampler2D _MainTex;
+		float4 _Color;
 
-			Cull Front // turn inside out so it wont render in front of diffuse
-			
-			CGPROGRAM
-            #pragma vertex vert
-			#pragma fragment frag
-						
-			struct appdata
-            {
-                float2 uv : TEXCOORD0;
-				float4 vertex : POSITION;
-            };
-
-			struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
-            };
-
-			sampler2D _MainTex;
-			fixed4 _OutlineColor;
-			float _OutlineThickness;
-
-			// vertex shader
-			v2f vert (appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex*(1+_OutlineThickness)); // scale the vertex
-                o.uv = v.uv;
-                return o;
-            }
-
-			// fragment shader
-			fixed4 frag (v2f i) : SV_Target
-            {
-                fixed4 col = tex2D(_MainTex, i.uv);
-				col *= _OutlineColor;
-                return col;
-            }
-			ENDCG
+		void surf (Input IN, inout SurfaceOutput o) {
+			o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb * _Color;
 		}
+		ENDCG
 
-		// diffuse pass
-		Pass {
+		// outline surface shader with custom vertex function
 
-            Tags {"LightMode"="ForwardBase"}
-        
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc" // for UnityObjectToWorldNormal
-            #include "UnityLightingCommon.cginc" // for _LightColor0
+		Cull Front // turn inside out so it will be rendered behind diffuse
 
-			sampler2D _MainTex;
-			fixed4 _Color;
-
-            struct v2f {
-                float2 uv : TEXCOORD0;
-                fixed4 diff : COLOR0;
-                float4 vertex : SV_POSITION;
-            };
-
-			// vertex shader
-            v2f vert (appdata_base v) {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.texcoord;
-                // get vertex normal in world space
-                half3 worldNormal = UnityObjectToWorldNormal(v.normal);
-                // dot product between normal and light direction for
-                // standard diffuse (Lambert) lighting
-                half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
-                // factor in the light color
-                o.diff = nl * _LightColor0;
-                return o;
-            }
-
-			// fragment shader
-            fixed4 frag (v2f i) : SV_Target {
-                // sample texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // multiply by lighting
-                col *= i.diff;
-				// multiply by _Color
-				col *= _Color;
-                return col;
-            }
-            ENDCG
-        }
+		CGPROGRAM
+		#pragma surface surf Lambert vertex:vert
+		struct Input {
+			float2 uv_MainTex;
+		};
+		float _OutlineThickness;
+		float4 _OutlineColor;
+		void vert (inout appdata_full v) {
+			v.vertex.xyz *= (1+_OutlineThickness); // scale
+		}
+		sampler2D _MainTex;
+		void surf (Input IN, inout SurfaceOutput o) {
+			o.Albedo = _OutlineColor;
+		}
+		ENDCG
 
 	}
+	FallBack "Diffuse"
 
 }
