@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788375, g: 0.21073635, b: 0.28994125, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2101,6 +2101,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4983146905363074, guid: 4ef987057a6bc464bb151fe75d647072,
     type: 2}
   m_PrefabInternal: {fileID: 130920841}
+--- !u!114 &134257847 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114479601668252518, guid: 8b02eb1d453c35c4c8ff1a76cb38a0d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1152725295}
+  m_Script: {fileID: 11500000, guid: c16b5265d71018848b70620f51b4b46f, type: 3}
 --- !u!1001 &142692103
 Prefab:
   m_ObjectHideFlags: 0
@@ -5349,6 +5355,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4983146905363074, guid: 4ef987057a6bc464bb151fe75d647072,
     type: 2}
   m_PrefabInternal: {fileID: 334537128}
+--- !u!114 &343326923 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114479601668252518, guid: 8b02eb1d453c35c4c8ff1a76cb38a0d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1079628644}
+  m_Script: {fileID: 11500000, guid: c16b5265d71018848b70620f51b4b46f, type: 3}
 --- !u!1001 &349406642
 Prefab:
   m_ObjectHideFlags: 0
@@ -6367,9 +6379,12 @@ MonoBehaviour:
   questMessage: Collect All Stars
   messageDuration: 3
   transitionDelay: 3
-  killAllEnemies: 0
-  collectAllCoins: 1
-  runToTheFinish: 0
+  questObjectives:
+  - {fileID: 134257847}
+  - {fileID: 343326923}
+  - {fileID: 1837800849}
+  - {fileID: 1370365215}
+  - {fileID: 2085356743}
 --- !u!1001 &417308803
 Prefab:
   m_ObjectHideFlags: 0
@@ -19373,6 +19388,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4983146905363074, guid: 4ef987057a6bc464bb151fe75d647072,
     type: 2}
   m_PrefabInternal: {fileID: 1366707058}
+--- !u!114 &1370365215 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114479601668252518, guid: 8b02eb1d453c35c4c8ff1a76cb38a0d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 243403180}
+  m_Script: {fileID: 11500000, guid: c16b5265d71018848b70620f51b4b46f, type: 3}
 --- !u!1001 &1371276239
 Prefab:
   m_ObjectHideFlags: 0
@@ -25370,6 +25391,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4983146905363074, guid: 4ef987057a6bc464bb151fe75d647072,
     type: 2}
   m_PrefabInternal: {fileID: 1240485432}
+--- !u!114 &1837800849 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114479601668252518, guid: 8b02eb1d453c35c4c8ff1a76cb38a0d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1341349438}
+  m_Script: {fileID: 11500000, guid: c16b5265d71018848b70620f51b4b46f, type: 3}
 --- !u!1001 &1848643502
 Prefab:
   m_ObjectHideFlags: 0
@@ -29166,6 +29193,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4983146905363074, guid: 4ef987057a6bc464bb151fe75d647072,
     type: 2}
   m_PrefabInternal: {fileID: 2083340931}
+--- !u!114 &2085356743 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114479601668252518, guid: 8b02eb1d453c35c4c8ff1a76cb38a0d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 549079390}
+  m_Script: {fileID: 11500000, guid: c16b5265d71018848b70620f51b4b46f, type: 3}
 --- !u!1001 &2089155063
 Prefab:
   m_ObjectHideFlags: 0

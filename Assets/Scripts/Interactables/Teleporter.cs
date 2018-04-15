@@ -11,8 +11,13 @@ namespace Robo {
         public string sceneName;
         public Text levelText;
         public Text completedText;
+        public Text promptText;
 
         bool isPlayerInTrigger = false;
+
+        private void Awake() {
+            promptText.gameObject.SetActive(false);
+        }
 
         private void OnEnable() {
 
@@ -30,6 +35,7 @@ namespace Robo {
             // player in range
             if (other.tag == "Player") {
                 isPlayerInTrigger = true;
+                promptText.gameObject.SetActive(true);
             }
         }
 
@@ -37,6 +43,7 @@ namespace Robo {
             // player out of range
             if (other.tag == "Player") {
                 isPlayerInTrigger = false;
+                promptText.gameObject.SetActive(false);
             }
         }
 

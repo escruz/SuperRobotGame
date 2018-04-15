@@ -12,10 +12,7 @@ namespace Robo {
         public float messageDuration = 3f;
         public float transitionDelay = 3f;
 
-        // quest condition (would be better if dynamic scriptable objects, but these are hardcoded for now)
-        public bool killAllEnemies = false;
-        public bool collectAllCoins = false;
-        public bool runToTheFinish = false;
+        public QuestObjective[] questObjectives;
 
         private float m_Delay = 0;
         private CharacterStats playerStats;
@@ -36,13 +33,6 @@ namespace Robo {
             // show notification
             if (!string.IsNullOrEmpty( questMessage )) {
                 NotificationUI.instance.Show(questMessage, messageDuration);
-            }
-            // grab required data for quest
-            if (killAllEnemies) {
-                m_Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            }
-            if (collectAllCoins) {
-                m_Collectables = GameObject.FindGameObjectsWithTag("Collectable");
             }
             // initialize state
             state = LevelControllerStates.QuestCheck;
@@ -76,21 +66,7 @@ namespace Robo {
             }
 
             // check quest complete conditions
-            bool success = true;
-
-            if (killAllEnemies) {
-                if (!KilledAllEnemies()) {
-                    success = false;
-                }
-            }
-            if (collectAllCoins) {
-                if (!CollectedAllCoins()) {
-                    success = false;
-                }
-            }
-            // TODO other quests
-
-            if (success) {
+            if (CompletedAllQuests()) {
                 // register completed level on PlayerData
                 playerStats.GetComponent<PlayerData>().CompleteLevel(SceneManager.GetActiveScene().name);
                 // show notification
@@ -100,6 +76,16 @@ namespace Robo {
                 state = LevelControllerStates.Victory;
                 return;
             }
+        }
+
+        private bool CompletedAllQuests() {
+            // check if all IQuestObjectives are completed
+            for (int i = 0; i < questObjectives.Length; i++) {
+                if (!questObjectives[i].IsComplete()) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private bool KilledAllEnemies() {

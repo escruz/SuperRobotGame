@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 136962807585044714}
   - component: {fileID: 114981972890956090}
   - component: {fileID: 114150475012272704}
+  - component: {fileID: 114850341429109920}
   m_Layer: 0
   m_Name: EnemyRobo01
   m_TagString: Enemy
@@ -653,7 +654,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802389802582782}
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 6.02, y: 0, z: -0.03}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931973459970604}
@@ -834,6 +835,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   targets: []
+--- !u!114 &114850341429109920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802389802582782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02048d23f7a5dc4439f41c3defdea6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114981972890956090
 MonoBehaviour:
   m_ObjectHideFlags: 1
