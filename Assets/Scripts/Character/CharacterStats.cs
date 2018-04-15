@@ -55,6 +55,13 @@ namespace Robo {
             }
         }
 
+        public void FullHeal() {
+            hp = maxHp;
+            if (OnUpdateHP != null) {
+                OnUpdateHP();
+            }
+        }
+
         private void RunInvulnerableTimer() {
             // run timer
             if (m_TimerInvul > 0) {

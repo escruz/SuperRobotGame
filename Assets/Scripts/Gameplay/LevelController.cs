@@ -9,19 +9,21 @@ namespace Robo {
 
         public string questMessage;
         public float messageDuration = 3f;
-        public float victoryDuration = 3f;
+        public float transitionDelay = 3f;
 
         // quest condition (would be better if dynamic, but these are hardcoded for now)
         public bool killAllEnemies = false;
         public bool collectAllCoins = false;
         public bool runToTheFinish = false;
 
-        private float m_TimeVictory = 0;
+        private float m_Delay = 0;
+        private CharacterStats playerStats;
 
         // states
         enum LevelControllerStates {
             QuestCheck,
-            Finish
+            Victory,
+            Defeat
         }
 
         private LevelControllerStates state;
@@ -43,13 +45,28 @@ namespace Robo {
             // running in a very simple statemachine
             if (state == LevelControllerStates.QuestCheck) {
                 QuestCheckUpdate();
-            } else if (state == LevelControllerStates.Finish) {
-                FinishUpdate();
+            } else if (state == LevelControllerStates.Victory) {
+                VictoryUpdate();
+            } else if (state == LevelControllerStates.Defeat) {
+                DefeatUpdate();
             }
             
         }
 
         private void QuestCheckUpdate() {
+
+            // check player death for Defeat condition
+            AssignTargetIfNeeded();
+            if (playerStats != null) {
+                if (playerStats.IsDead()) {
+                    NotificationUI.instance.Show("Game Over", transitionDelay);
+                    m_Delay = transitionDelay;
+                    state = LevelControllerStates.Defeat; // change state
+                    return;
+                }
+            }
+
+            // check quest complete conditions
             bool success = true;
 
             if (killAllEnemies) {
@@ -60,9 +77,10 @@ namespace Robo {
             // TODO other quests
 
             if (success) {
-                NotificationUI.instance.Show("Level Complete", victoryDuration);
-                m_TimeVictory = victoryDuration;
-                state = LevelControllerStates.Finish; // change state
+                NotificationUI.instance.Show("Level Complete", transitionDelay);
+                m_Delay = transitionDelay;
+                state = LevelControllerStates.Victory; // change state
+                return;
             }
         }
 
@@ -75,10 +93,25 @@ namespace Robo {
             return true;
         }
 
-        private void FinishUpdate() {
-            m_TimeVictory -= Time.deltaTime;
-            if (m_TimeVictory <= 0) {
+        private void VictoryUpdate() {
+            m_Delay -= Time.deltaTime;
+            if (m_Delay <= 0) {
                 GameController.instance.Load("LevelSelect");
+            }
+        }
+
+        private void DefeatUpdate() {
+            m_Delay -= Time.deltaTime;
+            if (m_Delay <= 0) {
+                GameController.instance.LoadTitleScene();
+            }
+        }
+
+        void AssignTargetIfNeeded() {
+            if (playerStats != null) return;
+            var target = GameObject.FindGameObjectWithTag("Player");
+            if (target != null) {
+                playerStats = target.GetComponent<CharacterStats>();
             }
         }
 

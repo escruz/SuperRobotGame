@@ -45,7 +45,14 @@ namespace Robo {
             LoadTitleScene();
         }
 
+        public void Reset() {
+            player.GetComponent<CharacterStats>().FullHeal();
+            player.SetActive(true);
+        }
+
         public void LoadTitleScene() {
+            // reset the player data to defaults when on the titlescreen
+            Reset();
             Load(titleScene);
         }
 
