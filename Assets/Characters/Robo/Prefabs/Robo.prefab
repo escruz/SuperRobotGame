@@ -1016,7 +1016,7 @@ MonoBehaviour:
   groundCheckDistance: 0.5
   attackDuration: 0.5
   attackForce: 1
-  canDoubleJump: 0
+  canDoubleJump: 1
   punchHitbox: {fileID: 114087688022934974}
 --- !u!136 &136223278431579808
 CapsuleCollider:

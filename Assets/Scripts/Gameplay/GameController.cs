@@ -36,6 +36,12 @@ namespace Robo {
         }
 
         private void Start() {
+            // if a scene is already loaded dont load the title scene
+            var s = SceneManager.GetSceneAt(SceneManager.sceneCount-1);
+            if (s.name != "MainScene") {
+                Spawn();
+                return;
+            }
             LoadTitleScene();
         }
 

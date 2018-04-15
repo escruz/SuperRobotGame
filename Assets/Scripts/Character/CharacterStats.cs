@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Robo {
 
@@ -17,10 +18,15 @@ namespace Robo {
 
         float m_TimerInvul = 0;
 
+        public event UnityAction OnUpdateHP;
+
         private void Update() {
             RunInvulnerableTimer();
         }
 
+        //--------------------------------------------
+        // Flags
+        //--------------------------------------------
         public bool IsDead() {
             return hp == 0;
         }
@@ -29,19 +35,28 @@ namespace Robo {
             return m_TimerInvul > 0;
         }
 
+        //--------------------------------------------
+        // Calculation
+        //--------------------------------------------
         public void DealDamage(int dmg) {
             if (IsDead()) return;
             if (IsInvulnerable()) return;
             hp -= dmg;
             if (hp <= 0) {
+                // dead
                 hp = 0;
                 Death();
             } else {
+                // trigger iframes
                 m_TimerInvul = invulDuration;
+            }
+            if (OnUpdateHP != null) {
+                OnUpdateHP();
             }
         }
 
         private void RunInvulnerableTimer() {
+            // run timer
             if (m_TimerInvul > 0) {
                 m_TimerInvul -= Time.deltaTime;
             } else {
@@ -51,7 +66,9 @@ namespace Robo {
 
         private void Death() {
             // TODO object pooler for explosions instead of instantiate
+            // create explosion
             Instantiate(deathEffect, transform.position, Quaternion.identity);
+            // deactivate
             gameObject.SetActive(false);
         }
         

@@ -27,7 +27,7 @@ namespace Robo {
         [Header("Misc")]
         public Hitbox punchHitbox;
         
-        float deadZone = 0.01f;
+        float deadZone = 0.1f;
 
         Rigidbody m_Rigidbody;
         Animator m_Animator;
