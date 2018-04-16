@@ -16,9 +16,16 @@ namespace Robo {
 
         public GameObject deathEffect;
 
+        public AudioClip hitClip;
+
+        AudioSource m_AudioSource;
         float m_TimerInvul = 0;
 
         public event UnityAction OnUpdateHP;
+
+        private void Awake() {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         private void Update() {
             RunInvulnerableTimer();
@@ -54,6 +61,8 @@ namespace Robo {
             } else {
                 // trigger iframes
                 m_TimerInvul = invulDuration;
+                // play hit clip
+                m_AudioSource.PlayOneShot(hitClip);
             }
             if (OnUpdateHP != null) {
                 OnUpdateHP();

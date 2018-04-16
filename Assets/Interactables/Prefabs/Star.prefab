@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16b5265d71018848b70620f51b4b46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectClip: {fileID: 8300000, guid: 64b7e22075073104ea78999f7df95452, type: 3}
 --- !u!212 &212548206970449782
 SpriteRenderer:
   m_ObjectHideFlags: 1

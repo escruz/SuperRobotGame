@@ -24,6 +24,10 @@ namespace Robo {
         public float attackForce = 2f;
         public bool canDoubleJump = false;
 
+        [Header("Audio")]
+        public AudioClip jumpClip;
+        public AudioClip punchClip;
+
         [Header("Misc")]
         public Hitbox punchHitbox;
         
@@ -32,6 +36,7 @@ namespace Robo {
         Rigidbody m_Rigidbody;
         Animator m_Animator;
         CharacterStats m_CharacterStats;
+        AudioSource m_AudioSource;
 
         Vector3 m_MoveDirection;
         Quaternion m_RotationDirection;
@@ -52,6 +57,7 @@ namespace Robo {
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Animator = GetComponent<Animator>();
             m_CharacterStats = GetComponent<CharacterStats>();
+            m_AudioSource = GetComponent<AudioSource>();
         }
         
         private void Update() {
@@ -77,11 +83,14 @@ namespace Robo {
         //--------------------------------------------
 
         private void HandleInput() {
+            // horizontal
             m_Horizontal = Input.GetAxis("Horizontal");
+            // jump
             var inputJump = Input.GetButtonDown("Jump");
             if (inputJump && !m_JumpPending) {
                 m_JumpPending = true;
             }
+            // fire
             var inputAttack = Input.GetButtonDown("Fire1");
             if (inputAttack && !m_AttackPending) {
                 m_AttackPending = true;
@@ -108,6 +117,7 @@ namespace Robo {
                 m_IsFacingRight = false;
             }
 
+            // snap the rotation to left or right, but still lerp it
             Vector3 facingDirection;
             if (m_IsFacingRight) {
                 facingDirection = new Vector3(0, 90, 0);
@@ -122,18 +132,21 @@ namespace Robo {
 
         private void Jump() {
 
+            // if attacking eat the input
             if (IsAttacking()) {
-                // if attacking eat the input
                 m_JumpPending = false;
                 return;
             }
 
+            // jump grabbed from input
             if (m_JumpPending) {
 
                 if (IsGrounded()) {
+                    // first jump
                     m_UsedDoubleJump = false;
                     DoJump(jumpSpeed);
                 } else if (canDoubleJump && !m_UsedDoubleJump) {
+                    // double jump
                     m_UsedDoubleJump = true;
                     DoJump(doubleJumpSpeed);
                 }
@@ -145,9 +158,13 @@ namespace Robo {
         }
 
         private void DoJump(float jSpeed) {
+            // clear rigidbody y velocity
             m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
             m_Rigidbody.angularVelocity = Vector3.zero;
+            // add y force
             m_Rigidbody.AddForce(new Vector3(0, jSpeed, 0), ForceMode.Impulse);
+            // play audio clip
+            m_AudioSource.PlayOneShot(jumpClip);
         }
         
         // IsGrounded - used for jumping
@@ -188,8 +205,10 @@ namespace Robo {
             if (m_TimerAttack > 0) {
                 m_TimerAttack -= Time.deltaTime;
                 if (m_TimerAttack <= 0) {
+                    // clear rigidbody velocity
                     m_Rigidbody.velocity = Vector3.zero;
                     m_Rigidbody.angularVelocity = Vector3.zero;
+                    // stop sliding
                     m_Rigidbody.useGravity = true;
                 }
             } else {
@@ -206,12 +225,19 @@ namespace Robo {
         }
 
         private void DoAttack() {
+            // set delay timer
             m_TimerAttack = attackDuration;
+            // clear rigidbody velocity
             m_Rigidbody.velocity = Vector3.zero;
             m_Rigidbody.angularVelocity = Vector3.zero;
+            // move forward a little bit
             m_Rigidbody.AddForce(transform.forward * attackForce, ForceMode.Impulse);
+            // animate
             m_Animator.SetTrigger("Attack");
+            // slide
             m_Rigidbody.useGravity = false;
+            // play adio
+            m_AudioSource.PlayOneShot(punchClip);
         }
 
         // called by Animation Event

@@ -230,6 +230,11 @@ Prefab:
       propertyPath: m_Name
       value: FilledHeart
       objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
   m_IsPrefabParent: 0
@@ -377,6 +382,11 @@ Prefab:
     - target: {fileID: 1287100004419566, guid: 74e15b1037aad30478e164f54625db56, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
@@ -622,7 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -770,7 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -911,6 +921,11 @@ Prefab:
     - target: {fileID: 1287100004419566, guid: 74e15b1037aad30478e164f54625db56, type: 2}
       propertyPath: m_Name
       value: FilledHeart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
@@ -1056,6 +1071,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.431769
       objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
   m_IsPrefabParent: 0
@@ -1199,6 +1219,11 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 0.431769
+      objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
@@ -1508,6 +1533,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.431769
       objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
   m_IsPrefabParent: 0
@@ -1621,6 +1651,11 @@ Prefab:
     - target: {fileID: 1287100004419566, guid: 74e15b1037aad30478e164f54625db56, type: 2}
       propertyPath: m_Name
       value: FilledHeart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
@@ -1756,6 +1791,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.431769
       objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
   m_IsPrefabParent: 0
@@ -1884,6 +1924,11 @@ Prefab:
     - target: {fileID: 1287100004419566, guid: 74e15b1037aad30478e164f54625db56, type: 2}
       propertyPath: m_Name
       value: FilledHeart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
@@ -2057,6 +2102,11 @@ Prefab:
       propertyPath: m_Name
       value: FilledHeart
       objectReference: {fileID: 0}
+    - target: {fileID: 114074761410149492, guid: 74e15b1037aad30478e164f54625db56,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e15b1037aad30478e164f54625db56, type: 2}
   m_IsPrefabParent: 0
@@ -2075,3 +2125,10 @@ GameObject:
   m_PrefabParentObject: {fileID: 1322423185142404, guid: 0a28b87cb58bfb24d88e8d339c5ed5fc,
     type: 2}
   m_PrefabInternal: {fileID: 522759436}
+--- !u!81 &2128564503
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128564502}
+  m_Enabled: 1

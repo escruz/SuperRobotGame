@@ -32,6 +32,11 @@ namespace Robo {
         public void DealDamageToTargets(int damage) {
             for (int i = targets.Count-1; i>=0; i--) {
                 var target = targets[i];
+                // if target is invalid just remove and continue
+                if (target == null) {
+                    targets.Remove(target);
+                    continue;
+                }
                 // damage target
                 var stats = target.GetComponent<CharacterStats>();
                 stats.DealDamage(damage);
