@@ -6,6 +6,7 @@ Shader "Robo/RoboShader" {
 	Properties {
 		[NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
 		_Color ("Color", Color) = (1,1,1,1)
+		_Tint ("Tint", Color) = (1,1,1,1)
 		_OutlineColor ("Outline Color", Color) = (0,0,0,1)
 		_OutlineThickness ("Outline Thickness", Range(0,0.1)) = 0.02
 	}
@@ -15,12 +16,18 @@ Shader "Robo/RoboShader" {
 		// diffuse surface shader
 		Tags { "RenderType" = "Opaque" }
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf Lambert finalcolor:tintedColor
+
 		struct Input {
 			float2 uv_MainTex;
 		};
 		sampler2D _MainTex;
 		float4 _Color;
+		float4 _Tint;
+
+		void tintedColor( Input IN, SurfaceOutput o, inout fixed4 color) {
+			color *= _Tint;
+		}
 
 		void surf (Input IN, inout SurfaceOutput o) {
 			o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb * _Color;

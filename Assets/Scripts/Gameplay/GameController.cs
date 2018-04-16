@@ -24,8 +24,6 @@ namespace Robo {
         public string startGameScene = "LevelSelect";
 
         private string currentScene = "";
-        
-        public event UnityAction OnFinishedLoading;
 
         private void Awake() {
             if (m_Instance == null) {

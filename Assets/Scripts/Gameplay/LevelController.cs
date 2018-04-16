@@ -26,9 +26,6 @@ namespace Robo {
 
         private LevelControllerStates state;
 
-        GameObject[] m_Enemies;
-        GameObject[] m_Collectables;
-
         private void Start() {
             // show notification
             if (!string.IsNullOrEmpty( questMessage )) {
@@ -82,26 +79,6 @@ namespace Robo {
             // check if all IQuestObjectives are completed
             for (int i = 0; i < questObjectives.Length; i++) {
                 if (!questObjectives[i].IsComplete()) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool KilledAllEnemies() {
-            // check if all enemies are deactivated
-            for (int i = 0; i<m_Enemies.Length; i++) {
-                if (m_Enemies[i].activeSelf) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool CollectedAllCoins() {
-            // check if all coins are deactivated
-            for (int i = 0; i < m_Collectables.Length; i++) {
-                if (m_Collectables[i].activeSelf) {
                     return false;
                 }
             }

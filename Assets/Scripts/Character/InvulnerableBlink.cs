@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace Robo {
 
+    // Tints the shader color when character is invulnerable
     public class InvulnerableBlink : MonoBehaviour {
-
-        public Color invulnerableColor = Color.white;
+        
+        // tinted color
+        public Color invulnerableColor = Color.black;
         public float blinkInterval = 0.2f;
 
         CharacterStats m_CharacterStats;
         Renderer[] m_Renderers;
-        Color[] m_RendererColors;
         bool isTinted = false;
         float m_TimerBlink = 0;
 
@@ -21,14 +22,16 @@ namespace Robo {
 
         private void Start() {
             m_Renderers = GetComponentsInChildren<Renderer>();
-            m_RendererColors = new Color[m_Renderers.Length];
-            for (int i = 0; i<m_Renderers.Length; i++) {
-                var rend = m_Renderers[i];
-                m_RendererColors[i] = rend.material.GetColor("_Color");
-            }
         }
 
         private void Update() {
+            // if dead toggle to normal
+            if (m_CharacterStats.IsDead()) {
+                if (isTinted) {
+                    ToggleTint();
+                }
+                return;
+            }
             Blink();
         }
 
@@ -42,24 +45,31 @@ namespace Robo {
                 m_TimerBlink = blinkInterval;
             }
 
+            // toggle tint when invulnerable
+            // if not toggle to change back to regular tint
             if (m_CharacterStats.IsInvulnerable()) {
                 ToggleTint();
             } else if (isTinted) {
                 ToggleTint();
             }
+
         }
 
         private void ToggleTint() {
+            // loop thru renderers
             for (int i = 0; i < m_Renderers.Length; i++) {
                 Color color;
                 if (isTinted) {
-                    color = m_RendererColors[i];
+                    color = Color.white;
                 } else {
                     color = invulnerableColor;
                 }
-                m_Renderers[i].material.SetColor("_Color", color);
+                // loop thru materials per renderer
+                for (var j = 0; j < m_Renderers[i].materials.Length; j++) {
+                    m_Renderers[i].materials[j].SetColor("_Tint", color);
+                }
             }
-            isTinted = !isTinted;
+            isTinted = !isTinted; // toggle
         }
 
     } 

@@ -158,10 +158,12 @@ GameObject:
   - component: {fileID: 95727210984497982}
   - component: {fileID: 54297231844285604}
   - component: {fileID: 136223278431579808}
+  - component: {fileID: 114633714529490336}
   - component: {fileID: 114814013133378360}
   - component: {fileID: 114412476927059028}
   - component: {fileID: 114667584499176486}
   - component: {fileID: 82016448843511892}
+  - component: {fileID: 81335681433068200}
   m_Layer: 0
   m_Name: Robo
   m_TagString: Player
@@ -948,6 +950,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!81 &81335681433068200
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322423185142404}
+  m_Enabled: 1
 --- !u!82 &82016448843511892
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1077,6 +1086,19 @@ MonoBehaviour:
   deathEffect: {fileID: 1623566544573304, guid: 65234e143240fb34ea96bd3224fb9ee3,
     type: 2}
   hitClip: {fileID: 8300000, guid: 024823ace6fa8644fadef0ce1841c4ba, type: 3}
+--- !u!114 &114633714529490336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322423185142404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c600e9fac01ebf4b8dcca29fc7f7537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnerableColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkInterval: 0.2
 --- !u!114 &114667584499176486
 MonoBehaviour:
   m_ObjectHideFlags: 1
