@@ -4,7 +4,7 @@
 Shader "Robo/RoboShader" {
 
 	Properties {
-		[NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
+		_MainTex ("Texture", 2D) = "white" {}
 		_Color ("Color", Color) = (1,1,1,1)
 		_Tint ("Tint", Color) = (1,1,1,1)
 		_OutlineColor ("Outline Color", Color) = (0,0,0,1)
@@ -57,6 +57,8 @@ Shader "Robo/RoboShader" {
 		ENDCG
 
 	}
+
 	FallBack "Diffuse"
+	CustomEditor "RoboShaderGUI"
 
 }
